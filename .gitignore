@@ -1,5 +1,40 @@
+.DS_Store
+.vscode
 node_modules
-bower_components
-.nyc_output
-/public/assets/build/
+/dist
+*.mwb.bak
+/.nyc_output/
+/coverage.data
+/key.pem
+/cert.pem
+/sonarqube-scanner-launcher.sh
+sonarqube-scanner-launcher.bat
+/logs/*.log
+/sonar-scanner-*
+/sonar-scanner
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Local configuration files
+/src/config/production.js
+/src/config/test.js
+/src/config/development.js
+
+# Editor directories and files
 .idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
+
+/.scannerwork/
+/apidoc/

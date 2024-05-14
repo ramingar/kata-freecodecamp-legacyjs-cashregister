@@ -1,0 +1,4 @@
+function checkCashRegister() {
+}
+
+export {checkCashRegister}
