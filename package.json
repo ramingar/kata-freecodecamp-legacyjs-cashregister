@@ -17,5 +17,8 @@
     "nyc": "^15.1.0",
     "tap-spec-emoji": "^6.1.2",
     "tape": "^4.10.1"
+  },
+  "dependencies": {
+    "decimal": "^0.0.2"
   }
 }
