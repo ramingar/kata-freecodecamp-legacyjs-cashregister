@@ -10,12 +10,10 @@ const CURRENCIES = {
     'ONE HUNDRED': 100
 };
 
-const div = (a, b) => +(a / b).toFixed(2);
-
 const calculateNextChangeCoin = (CURRENCIES, cid, debt) => cid
     // we divide the debt by the coins value to know how many times the coin will be used, if it is greater than 1 we use it
     // we only have to be sure that we don't use more coins than we have, that's why we write the condition in the .map function
-    .map(([coin, value]) => ({coin, count: Math.min(div(debt, CURRENCIES[coin]), div(value, CURRENCIES[coin]))}))
+    .map(([coin, value]) => ({coin, count: Math.min(+(debt / CURRENCIES[coin]).toFixed(2), +(value / CURRENCIES[coin]).toFixed(2))}))
     .find(({_, count}) => count > 1)
 
 const addNextCoinToTheChange = (CURRENCIES, {debt, cid, coins}) => ({debt, cid, coins, next: calculateNextChangeCoin(CURRENCIES, cid, debt)});
