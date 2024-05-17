@@ -18,17 +18,17 @@ const calculateNextChangeCoin = (CURRENCIES, cid, debt) => cid
 
 const addNextCoinToTheChange = (CURRENCIES, {debt, cid, coins}) => ({debt, cid, coins, next: calculateNextChangeCoin(CURRENCIES, cid, debt)});
 
-const updateDebt = (CURRENCIES, {debt, cid, coins, next}) => {
-    const amountToReturn = CURRENCIES[next?.coin] * Math.floor(next?.count)
+const updateDebt = (CURRENCIES, {debt, cid, coins, next = {}}) => {
+    const amountToReturn = CURRENCIES[next.coin] * Math.floor(next.count)
     return {
         // If next is undefined, we can't pay the change, the subtraction will be NaN and then debt will be 0 to stop the loop
         debt: debt - amountToReturn || 0,
         // If next is undefined, we can't pay the change, then cid is unaltered.
         // If next is not undefined, cid will be updated only for the coin that will be used (because we used that coin to pay the change)
-        cid: cid.map(([coin, amountInCid]) => coin === next?.coin ? [coin, amountInCid - amountToReturn] : [coin, amountInCid]),
+        cid: cid.map(([coin, amountInCid]) => coin === next.coin ? [coin, amountInCid - amountToReturn] : [coin, amountInCid]),
         // If next is undefined, we can't pay the change, then coins will be unaltered.
         // If next is not undefined, we add the coin to be used and the amount to be used
-        coins: next ? [...coins, [next.coin, amountToReturn]] : coins,
+        coins: next.coin ? [...coins, [next.coin, amountToReturn]] : coins,
         next
     }
 }
